@@ -46,10 +46,12 @@ const Home = () => {
   const [value, setValue] = React.useState('1');
   const [sortedData, setSortedData] = useState(airLinesData); // Initialize with the original data
   const [selectedSortOption, setSelectedSortOption] = useState('1');
+  const [selectedTab, setSelectedTab] = useState('1');
 
   // handle Tab Change
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setSelectedTab(newValue);
   };
   const handleAirlinesChange = (event, newValue) => {
     sortData(newValue);
@@ -216,6 +218,7 @@ const Home = () => {
           </TabContext>
         </Box>
       </Grid>
+
       <Grid
         item
         xs={12}
@@ -225,64 +228,73 @@ const Home = () => {
           padding: '25px 20px',
         }}
       >
-        <Box
-          sx={{
-            display: { xs: 'block', md: 'flex' },
-            justifyContent: 'space-between',
-            width: '100%',
-            alignItems: 'center',
-          }}
-        >
-          <Stack
-            sx={{
-              mb: { xs: '20px', md: 0 },
-            }}
-          >
-            <Typography variant={'h5'}>Search results</Typography>
-            <Typography variant="caption">
-              We found 15 results
-            </Typography>
-          </Stack>
+        {selectedTab === '1' ? (
+          <>
+            <Box
+              sx={{
+                display: { xs: 'block', md: 'flex' },
+                justifyContent: 'space-between',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <Stack
+                sx={{
+                  mb: { xs: '20px', md: 0 },
+                }}
+              >
+                <Typography variant={'h5'}>Search results</Typography>
+                <Typography variant="caption">
+                  We found 15 results
+                </Typography>
+              </Stack>
+              <Box>
+                <Typography mb={{ xs: '10px' }} variant={'h6'}>
+                  Sort By:
+                </Typography>
 
-          <Typography mb="10px" variant={'h6'}>
-            Sort By
-          </Typography>
-
-          <Stack direction={'row'} spacing={{ xs: 1, md: 2 }}>
-            <SortTypography
-              variant="caption"
-              selected={selectedSortOption === '1'}
-              onClick={() => handleAirlinesChange(null, '1')}
+                <Stack direction={'row'} spacing={{ xs: 1, md: 2 }}>
+                  <SortTypography
+                    variant="caption"
+                    selected={selectedSortOption === '1'}
+                    onClick={() => handleAirlinesChange(null, '1')}
+                  >
+                    CHEAPEST
+                  </SortTypography>
+                  <SortTypography
+                    variant="caption"
+                    selected={selectedSortOption === '2'}
+                    onClick={() => handleAirlinesChange(null, '2')}
+                  >
+                    SHORTEST
+                  </SortTypography>
+                  <SortTypography
+                    variant="caption"
+                    selected={selectedSortOption === '3'}
+                    onClick={() => handleAirlinesChange(null, '3')}
+                  >
+                    RECOMMENDED
+                  </SortTypography>
+                </Stack>
+              </Box>
+            </Box>
+            <Stack
+              my="20px"
+              direction={'row'}
+              spacing={2}
+              alignItems={'center'}
             >
-              CHEAPEST
-            </SortTypography>
-            <SortTypography
-              variant="caption"
-              selected={selectedSortOption === '2'}
-              onClick={() => handleAirlinesChange(null, '2')}
-            >
-              SHORTEST
-            </SortTypography>
-            <SortTypography
-              variant="caption"
-              selected={selectedSortOption === '3'}
-              onClick={() => handleAirlinesChange(null, '3')}
-            >
-              RECOMMENDED
-            </SortTypography>
-          </Stack>
-        </Box>
-        <Stack
-          my="20px"
-          direction={'row'}
-          spacing={2}
-          alignItems={'center'}
-        >
-          <Typography variant="h5">London</Typography>
-          <ArrowRightAltIcon fontSize="large" color="gray" />
-          <Typography variant="h5">New York</Typography>
-        </Stack>
-        <AirLines sortedData={sortedData} />
+              <Typography variant="h5">London</Typography>
+              <ArrowRightAltIcon fontSize="large" color="gray" />
+              <Typography variant="h5">New York</Typography>
+            </Stack>
+            <AirLines sortedData={sortedData} />
+          </>
+        ) : (
+          <>
+            <Typography variant="h6">Coming Soon</Typography>
+          </>
+        )}
       </Grid>
     </Grid>
   );
