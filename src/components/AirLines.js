@@ -30,107 +30,109 @@ const AirLines = ({ sortedData }) => {
 
   return (
     <>
-      {getPageItems().map((airlines) => {
-        const logoWidth =
-          airlines.logo === 'Wizz_Air_logo.svg.png'
-            ? '100px'
-            : '200px';
-        const logoHeight =
-          airlines.logo === 'Wizz_Air_logo.svg.png'
-            ? '50px'
-            : '100px';
+      {getPageItems().map((airline) => {
+        const isWizzAirLogo =
+          airline.logo === 'Wizz_Air_logo.svg.png';
+        const logoWidth = isWizzAirLogo ? '100px' : '200px';
+        const logoHeight = isWizzAirLogo ? '50px' : '100px';
         const stopsBackgroundColor =
-          airlines.stops > 0 ? '#CA676A' : 'gray';
+          airline.stops > 0 ? '#CA676A' : 'gray';
 
         return (
           <Card
-            key={airlines.id}
+            key={airline.id}
             sx={{
               display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
               justifyContent: 'space-between',
               alignItems: 'center',
               bgcolor: '#fff',
               mb: '10px',
-              px: '20px',
+              px: { xs: '5px', sm: '10px', md: '20px' },
               boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+              width: { xs: '100%', md: 'auto' },
             }}
           >
             <Box
-              width={'200px'}
+              width={{ xs: '100px', md: '200px' }}
               height={'60px'}
-              alignItems={'center'}
               display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
             >
               <img
-                src={airlines.logo}
-                alt="airlines"
+                src={airline.logo}
+                alt="airline"
                 width={logoWidth}
                 height={logoHeight}
               />
             </Box>
 
-            <Stack direction={'row'} alignItems={'center'}>
+            <Stack
+              my={1}
+              spacing={{ xs: 1, md: 0 }}
+              flexDirection={{ xs: 'column', md: 'row' }}
+              alignItems={'center'}
+            >
               <Stack spacing={1}>
                 <Typography variant="caption">Depart</Typography>
                 <Typography variant="caption">
-                  {airlines.departDate}
+                  {airline.departDate}
                 </Typography>
                 <Typography fontWeight={'bold'} variant="caption">
-                  {airlines.departTime}
+                  {airline.departTime}
                 </Typography>
               </Stack>
 
-              <Stack
-                mx={'10px'}
-                direction={'row'}
-                spacing={1}
+              <Box
+                display={{ xs: 'none', md: 'flex' }}
+                mx={2}
                 alignItems={'center'}
               >
                 <Typography>.</Typography>
                 <Typography>.</Typography>
                 <Typography>.</Typography>
-              </Stack>
+              </Box>
 
-              <Stack spacing={1} mt={4}>
-                <div
-                  style={{
-                    padding: '5px 10px',
+              <Stack spacing={1} mt={{ xs: 1, md: 4 }} mb={1}>
+                <Box
+                  sx={{
+                    p: '5px 10px',
                     borderRadius: '50px',
-                    backgroundColor: stopsBackgroundColor,
+                    bgcolor: stopsBackgroundColor,
+                    display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    display: 'flex',
                     height: '25px',
                   }}
                 >
                   <Typography variant="caption">
-                    {airlines.stops}
+                    {airline.stops}
                   </Typography>
                   <Typography variant="caption">Stops</Typography>
-                </div>
+                </Box>
                 <Typography variant="caption">
-                  {airlines.duration}
+                  {airline.duration}
                 </Typography>
               </Stack>
 
-              <Stack
-                direction={'row'}
-                spacing={1}
+              <Box
+                display={{ xs: 'none', md: 'flex' }}
+                mx={2}
                 alignItems={'center'}
-                mx={'10px'}
               >
                 <Typography>.</Typography>
                 <Typography>.</Typography>
                 <Typography>.</Typography>
-              </Stack>
+              </Box>
 
               <Stack spacing={1}>
                 <Typography variant="caption">Arrive</Typography>
                 <Typography variant="caption">
-                  {airlines.arriveDate}
+                  {airline.arriveDate}
                 </Typography>
                 <Typography fontWeight={'bold'} variant="caption">
-                  {airlines.arriveTime}
+                  {airline.arriveTime}
                 </Typography>
               </Stack>
             </Stack>
@@ -138,7 +140,7 @@ const AirLines = ({ sortedData }) => {
             <Stack spacing={1}>
               <Typography variant="caption">Price</Typography>
               <Typography fontWeight={'bold'} variant="h6">
-                {airlines.price}
+                {airline.price}
               </Typography>
             </Stack>
           </Card>

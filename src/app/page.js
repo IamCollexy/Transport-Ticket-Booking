@@ -205,14 +205,12 @@ const Home = () => {
               value="3"
               sx={{ fontSize: '16px', fontWeight: 'bold' }}
             >
-              {' '}
               Ships Coming Soon
             </TabPanel>
             <TabPanel
               value="4"
               sx={{ fontSize: '16px', fontWeight: 'bold' }}
             >
-              {' '}
               Cars Coming Soon
             </TabPanel>
           </TabContext>
@@ -229,19 +227,28 @@ const Home = () => {
       >
         <Box
           sx={{
-            display: 'flex',
+            display: { xs: 'block', md: 'flex' },
             justifyContent: 'space-between',
             width: '100%',
             alignItems: 'center',
           }}
         >
-          <Stack>
-            <Typography variant="h5">Search results</Typography>
+          <Stack
+            sx={{
+              mb: { xs: '20px', md: 0 },
+            }}
+          >
+            <Typography variant={'h5'}>Search results</Typography>
             <Typography variant="caption">
               We found 15 results
             </Typography>
           </Stack>
-          <Stack direction={'row'} spacing={2}>
+
+          <Typography mb="10px" variant={'h6'}>
+            Sort By
+          </Typography>
+
+          <Stack direction={'row'} spacing={{ xs: 1, md: 2 }}>
             <SortTypography
               variant="caption"
               selected={selectedSortOption === '1'}
