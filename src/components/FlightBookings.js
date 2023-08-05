@@ -60,13 +60,8 @@ const FlightBookings = () => {
               }}
             />
           </FormControl>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <FormControl>
+          <Stack spacing={1} direction={{ xs: 'column', md: 'row' }}>
+            <FormControl fullWidth>
               <Typography variant="caption">
                 Departure Date
               </Typography>
@@ -79,18 +74,19 @@ const FlightBookings = () => {
                 type="date"
               />
             </FormControl>
-            <FormControl>
+            <FormControl fullWidth>
               <Typography variant="caption">Return Date</Typography>
 
               <TextField
                 sx={{
                   bgcolor: '#FFFFFF',
+                  width: '100%',
                 }}
                 variant="outlined"
                 type="date"
               />
             </FormControl>
-          </Box>
+          </Stack>
           <Stack direction={'row'} spacing={2}>
             <Box width={'60%'}>
               <FormControl

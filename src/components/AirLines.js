@@ -70,12 +70,14 @@ const AirLines = ({ sortedData }) => {
 
             <Stack
               my={1}
-              spacing={{ xs: 1, md: 0 }}
-              flexDirection={{ xs: 'column', md: 'row' }}
+              spacing={{ xs: 1, md: 2 }}
+              direction={{ xs: 'column', md: 'row' }}
               alignItems={'center'}
             >
               <Stack spacing={1}>
-                <Typography variant="caption">Depart</Typography>
+                <Typography fontWeight={'bold'} variant="caption">
+                  Depart
+                </Typography>
                 <Typography variant="caption">
                   {airline.departDate}
                 </Typography>
@@ -94,10 +96,14 @@ const AirLines = ({ sortedData }) => {
                 <Typography>.</Typography>
               </Box>
 
-              <Stack spacing={1} mt={{ xs: 1, md: 4 }} mb={1}>
+              <Stack
+                spacing={1}
+
+                // mt={{ xs: 1, md: 4 }}
+                // mb={{ xs: 1, md: 0 }}
+              >
                 <Box
                   sx={{
-                    p: '5px 10px',
                     borderRadius: '50px',
                     bgcolor: stopsBackgroundColor,
                     display: 'flex',
@@ -127,7 +133,9 @@ const AirLines = ({ sortedData }) => {
               </Box>
 
               <Stack spacing={1}>
-                <Typography variant="caption">Arrive</Typography>
+                <Typography fontWeight={'bold'} variant="caption">
+                  Arrive
+                </Typography>
                 <Typography variant="caption">
                   {airline.arriveDate}
                 </Typography>
